@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p>Dear [[${producer}]],</p>
+	<p>
+		Your item <a th:href="@{|${linkToItem}/${itemId}|}">[[${itemTitle}]]</a>
+		 with ID [[${itemId}]] is now reserved by [[${receiver}]].
+	</p>
+	<p>The pickup location is [[${address.houseNumber}]],
+		[[${address.streetName}]], [[${address.zipCode}]],
+		[[${address.city}]].</p>
+	<p>Pickup time is at [[${time}]] .</p>
+	<p>Thank you for caring about the environment.</p>
+	<em>XChangeIT Team</em>
+	<br />
+	<br />
+</body>
+</html>
+

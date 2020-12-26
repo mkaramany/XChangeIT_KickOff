@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p>Dear [[${producer}]],</p>
+	<p>
+		Please inform us if the item <a th:href="@{|${linkToItem}/${itemId}|}">[[${itemTitle}]]</a>
+		with ID [[${itemId}]] is picked up or not?
+	</p>
+	<p><a th:href="@{|${linkToTakenItem}/${itemId}|}">Yes</a>   <a th:href="@{|${linkEditToItem}/${itemId}|}">No</a></p>
+	<p>Thank you for caring about the environment.</p>
+	<em>XChangeIT Team</em>
+	<br />
+	<br />
+</body>
+</html>
