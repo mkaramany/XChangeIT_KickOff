@@ -51,6 +51,9 @@ public class User implements Serializable {
 	private String lastName;
 
 	private String password;
+	
+	@Column(name = "phone_number")
+	private String phoneNumber;
 
 	@Lob
 	@Type(type = "org.hibernate.type.BinaryType")
@@ -65,6 +68,8 @@ public class User implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private AuthProvider provider;
+	
+
 
 	// bi-directional many-to-one association to Item
 	// @OneToMany(fetch = FetchType.LAZY, mappedBy="user")
@@ -131,6 +136,14 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public byte[] getProfilePicture() {

@@ -90,40 +90,9 @@ class SidenavContent extends Component {
       <CustomScrollbars className=" scrollbar">
         <ul className="nav-menu">
           <li className="nav-header">
-            <IntlMessages id="sidebar.admin.systemAdministration" />
+            <IntlMessages id="sidebar.rentItOut" />
           </li>
 
-          <li className="menu collapse-box">
-            <Button>
-              <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
-              <span className="nav-text">
-                <IntlMessages id="sidebar.admin.administration" />
-              </span>
-            </Button>
-            <ul className="sub-menu">
-              <li>
-                <NavLink className="prepend-icon" to="/app/admin/users">
-                  <span className="nav-text">
-                    <IntlMessages id="sidebar.admin.users" />
-                  </span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="prepend-icon" to="/app/admin/entities">
-                  <span className="nav-text">
-                    <IntlMessages id="sidebar.admin.entities" />
-                  </span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="prepend-icon" to="/app/admin/teams">
-                  <span className="nav-text">
-                    <IntlMessages id="sidebar.admin.teams" />
-                  </span>
-                </NavLink>
-              </li>
-            </ul>
-          </li>
 
           <li className="nav-header">
             <IntlMessages id="sidebar.items.itemsMenu" />
@@ -141,7 +110,14 @@ class SidenavContent extends Component {
                 <NavLink className="prepend-icon" to="/app/items/myItems">
                   <span className="nav-text">
                     <IntlMessages id="sidebar.items.myItems" />
-                    {/* not used because we r using top navigation */}
+                  </span>
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink className="prepend-icon" to="/app/items/allItems">
+                  <span className="nav-text">
+                    <IntlMessages id="sidebar.items.allItems" />
                   </span>
                 </NavLink>
               </li>

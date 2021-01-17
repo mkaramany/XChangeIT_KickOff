@@ -2,13 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../../../../actions/index";
 import ContainerHeader from "../../../../../components/ContainerHeader/index";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid, TextField, TableRow, TableCell } from "@material-ui/core";
 import Fab from "@material-ui/core/Fab";
 import _ from "lodash";
 import ItemCard from "../../../../../components/Cards/Item";
+import ItemStatus from "../../../../../components/ItemStatus"
+
 import { NavLink } from "react-router-dom";
 import { Alert } from "reactstrap";
 import IntlMessages from "util/IntlMessages";
+import PropertiesCard from "../../../components/routes/dashboard/routes/Listing/PropertiesCard";
 
 class Items extends React.Component {
   state = { searchCriteria: { zipCode: "", city: "", textSearch: "" } };
@@ -116,27 +119,43 @@ class Items extends React.Component {
                 }}
               >
                 <Grid container>
-                  {_.map(this.props.itemList, (item, index) => {
+                <div className="col-xl-12 col-lg-12 col-md-12 col-12 order-lg-1">
+                <PropertiesCard/>
+                </div>
+               
+                  {/* {_.map(this.props.itemList, (i, index) => {
 
-                    return (
-                      <div
-                        key={index}
-                        className="col-lg-3 col-lg-3 col-sm-6 col-12 order-xl-3"
-                      >
-                        <NavLink
-                          className="prepend-icon"
-                          to={"/app/items/viewItem/" + item.id}
-                        >
-                          <ItemCard
-                            title={item.title}
-                            description={item.description}
-                            status={item.status}
-                            image={item.thumbnail}
-                          />
-                        </NavLink>
+                   return (
+                      <div className="col-lg-12 col-lg-12 col-sm-12 col-12 order-xl-12">
+                        <TableRow key={i.id}>
+                        <TableCell align="left">{i.id}</TableCell>
+                          <TableCell align="left">
+                            <img
+                              alt="..."
+                              width="90"
+                              height="90"
+                              src={
+                                "data:image/jpeg;base64," + i.thumbnail
+                              }
+                            />
+                          </TableCell>
+                          <TableCell align="left">{i.title}</TableCell>
+                          <TableCell align="left">{i.description}</TableCell>
+                          <TableCell align="left">
+                            <ItemStatus
+                              width={100}
+                              status={i.status}
+                            ></ItemStatus>
+                          </TableCell>
+                          <TableCell align="left">{i.price}$</TableCell>
+
+                        </TableRow>
                       </div>
+                      
+                      <PropertiesCard/>
+
                     );
-                  })}
+                  })} */}
                 </Grid>
               </div>
             </div>

@@ -55,11 +55,6 @@ public class UserController {
 		User requestor = userService.getUserById(userId);
 
 		if (requestor.getId() == userToEdit.getId() || RoleEnum.ROLE_ADMIN.name().equals(requestor.getRoleCode())) {
-			String cityByOSM = addressService.getCityByZipCode(userToEdit.getAddress().getZipCode());
-			if (StringUtils.isEmpty(cityByOSM)) {
-				return ResponseEntity.ok().body(new MessageResponse("Zip Code does not exist!"));
-			}
-			userToEdit.getAddress().setCity(cityByOSM);
 			return ResponseEntity.ok(userService.editUser(userToEdit));
 		}
 		return new ResponseEntity<String>("Forbidden", HttpStatus.FORBIDDEN);

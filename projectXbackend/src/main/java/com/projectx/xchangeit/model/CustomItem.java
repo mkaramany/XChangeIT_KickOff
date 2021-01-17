@@ -10,6 +10,8 @@ public class CustomItem {
 
 	private String description;
 
+	private Double price;
+
 	private String status;
 
 	private Image image;
@@ -24,17 +26,18 @@ public class CustomItem {
 //		super();
 //	}
 
-	public CustomItem(Integer id, String title, String description, String status,  byte[] thumbnail) {
+	public CustomItem(Integer id, String title, String description, String status, byte[] thumbnail, Double price) {
 		super();
 		this.id = id;
 		this.status = status;
 		this.title = title;
 		this.description = description;
 		this.thumbnail = thumbnail;
+		this.price = price;
 	}
 
 	public CustomItem(Integer id, String title, String description, String status, Date publishDate,
-			Date lastModifiedDate,  byte[] thumbnail) {
+			Date lastModifiedDate, byte[] thumbnail) {
 		super();
 		this.id = id;
 		this.status = status;
@@ -77,6 +80,14 @@ public class CustomItem {
 		this.description = description;
 	}
 
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
 	public Image getImage() {
 		return image;
 	}
@@ -108,6 +119,5 @@ public class CustomItem {
 	public void setThumbnail(byte[] thumbnail) {
 		this.thumbnail = thumbnail;
 	}
-	
 
 }

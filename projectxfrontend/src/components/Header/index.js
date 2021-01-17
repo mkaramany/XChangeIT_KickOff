@@ -21,7 +21,7 @@ import AppNotification from "../AppNotification/index";
 //import CardHeader from 'components/dashboard/Common/CardHeader/index';
 import { switchLanguage, toggleCollapsedNav, setDefaultLanguage } from "actions/Setting";
 import IntlMessages from "util/IntlMessages";
-import LanguageSwitcher from "components/LanguageSwitcher/index";
+// import LanguageSwitcher from "components/LanguageSwitcher/index";
 import Menu from "components/TopNav/Menu";
 import UserInfoPopup from "components/UserInfo/UserInfoPopup";
 
@@ -203,7 +203,7 @@ class Header extends React.Component {
           <Link className="app-logo mr-2 d-none d-sm-block" to="/">
             <img
               height="69px"
-              src={require("assets/images/nex_logo.PNG")}
+              src={require("assets/images/projectX_logo.png")}
               alt="Jambo"
               title="Jambo"
             />
@@ -262,7 +262,7 @@ class Header extends React.Component {
                 </DropdownMenu>
               </Dropdown>
             </li>
-            <li className="list-inline-item">
+            {/* <li className="list-inline-item">
               <Dropdown
                 className="quick-menu"
                 isOpen={this.state.langSwitcher}
@@ -286,7 +286,7 @@ class Header extends React.Component {
                   />
                 </DropdownMenu>
               </Dropdown>
-            </li>
+            </li> */}
             <li className="list-inline-item app-tour">
               <Dropdown
                 className="quick-menu"

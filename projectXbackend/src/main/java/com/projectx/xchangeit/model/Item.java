@@ -43,6 +43,20 @@ public class Item implements Serializable {
 	private Timestamp publishDate;
 
 	private Timestamp lastModifiedDate;
+	
+	private String category;
+	
+	private String activityType;
+	
+	private Double price;
+	
+	private Double deposit;
+	
+	private Double cancellationFees;
+	
+	private String age;
+	
+	private String location;
 
 	@Lob
 	@Type(type = "org.hibernate.type.BinaryType")
@@ -126,6 +140,62 @@ public class Item implements Serializable {
 
 	public void setLastModifiedDate(Timestamp lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getActivityType() {
+		return activityType;
+	}
+
+	public void setActivityType(String activityType) {
+		this.activityType = activityType;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Double getDeposit() {
+		return deposit;
+	}
+
+	public void setDeposit(Double deposit) {
+		this.deposit = deposit;
+	}
+
+	public Double getCancellationFees() {
+		return cancellationFees;
+	}
+
+	public void setCancellationFees(Double cancellationFees) {
+		this.cancellationFees = cancellationFees;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public User getProducer() {

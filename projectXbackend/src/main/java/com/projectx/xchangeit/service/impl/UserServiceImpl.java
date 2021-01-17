@@ -114,10 +114,10 @@ public class UserServiceImpl implements UserService {
 		existingUser.setFirstName(user.getFirstName());
 		existingUser.setLastName(user.getLastName());
 		existingUser.setProfilePicture(user.getProfilePicture());
-		existingUser.getAddress().setCity(user.getAddress().getCity());
-		existingUser.getAddress().setZipCode(user.getAddress().getZipCode());
-		existingUser.getAddress().setStreetName(user.getAddress().getStreetName());
-		existingUser.getAddress().setHouseNumber(user.getAddress().getHouseNumber());
+//		existingUser.getAddress().setCity(user.getAddress().getCity());
+//		existingUser.getAddress().setZipCode(user.getAddress().getZipCode());
+//		existingUser.getAddress().setStreetName(user.getAddress().getStreetName());
+//		existingUser.getAddress().setHouseNumber(user.getAddress().getHouseNumber());
 
 		return userRepository.save(existingUser);
 	}

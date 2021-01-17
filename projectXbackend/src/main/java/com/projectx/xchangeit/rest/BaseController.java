@@ -40,9 +40,6 @@ public class BaseController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-//	@Autowired
-//	private JwtUtil jwtTokenUtil;
-
 	@Autowired
 	private TokenProvider jwtTokenProvider;
 
@@ -98,20 +95,13 @@ public class BaseController {
 
 		if (userService.existsByEmail(user.getEmail())) {
 			return ResponseEntity.ok().body(new MessageResponse("Email is already in use!"));
-		}
+		}	
 
-		String cityByOSM = addressService.getCityByZipCode(user.getAddress().getZipCode());
-		if (StringUtils.isEmpty(cityByOSM))
-			return ResponseEntity.ok().body(new MessageResponse("Zip Code does not exist!"));
-
-		// Create new user's account (encode password and replace city by the one
-		// returned from OSM
+		// Create new user's account (encode password)
 		User newXChangeItUser = user;
-		newXChangeItUser.getAddress().setCity(cityByOSM);
 		newXChangeItUser.setPassword(encoder.encode(user.getPassword()));
 
-		// try here like the duplicate email check or send err + check how to use in
-		// react
+
 		userService.signUp(newXChangeItUser);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/me").buildAndExpand(1).toUri();

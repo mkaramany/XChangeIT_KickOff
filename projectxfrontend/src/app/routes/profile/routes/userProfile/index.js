@@ -120,12 +120,12 @@ class UserProfile extends React.Component {
       lastName: values.lastName,
       email: values.email,
       profilePicture: pp,
-      address: {
-        zipCode: values.zipCode,
-        city: values.city,
-        streetName: values.streetName,
-        houseNumber: values.houseNumber,
-      },
+      // address: {
+      //   zipCode: values.zipCode,
+      //   city: values.city,
+      //   streetName: values.streetName,
+      //   houseNumber: values.houseNumber,
+      // },
     };
     return user;
   };
@@ -171,14 +171,14 @@ class UserProfile extends React.Component {
                 validationSchema={Yup.object().shape({
                   firstName: Yup.string().required(requiredErrorMsg).max(80,  tooLongErrorMsg),
                   lastName: Yup.string().required(requiredErrorMsg).max(80,  tooLongErrorMsg),
-                  zipCode: Yup.number()
-                    .typeError(numbersErrorMsg)
-                    .required(requiredErrorMsg),
-                  streetName: Yup.string().required(requiredErrorMsg),
-                  houseNumber: Yup.number()
-                    .typeError(numbersErrorMsg)
-                    .required(requiredErrorMsg),
-                  city: Yup.string().required(requiredErrorMsg),
+                  // zipCode: Yup.number()
+                  //   .typeError(numbersErrorMsg)
+                  //   .required(requiredErrorMsg),
+                  // streetName: Yup.string().required(requiredErrorMsg),
+                  // houseNumber: Yup.number()
+                  //   .typeError(numbersErrorMsg)
+                  //   .required(requiredErrorMsg),
+                  // city: Yup.string().required(requiredErrorMsg),
                 })}
               >
                 {(props) => {
@@ -265,6 +265,20 @@ class UserProfile extends React.Component {
                                 </span>
                               </Grid>
                             </Grid>
+
+                            <Grid item xs={12} style={{ padding: "10px" }}>
+                              <Grid item xs={1} style={{ fontSize: "14px" }}>
+                              <IntlMessages id="user.profile.phoneNumber" />
+                              </Grid>
+                              <Grid item xs={11} style={{ fontSize: "18px" }}>
+                                <span>
+                                  <p>
+                                    <b>{this.props.userToEdit.phoneNumber}</b>
+                                  </p>
+                                </span>
+                              </Grid>
+                            </Grid>
+
                             <Grid item xs={6} style={{ padding: "10px" }}>
                               <TextField
                                 type="text"
@@ -303,86 +317,7 @@ class UserProfile extends React.Component {
                                 className="mt-0 mb-2"
                               />
                             </Grid>
-<Grid 
-                            item xs={4} style={{ padding: "10px" }}>
-                              {" "}
-                              <TextField
-                                type="text"
-                                name="streetName"
-                                value={values.streetName}
-                                error={errors.streetName && touched.streetName}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={
-                                  errors.streetName &&
-                                  touched.streetName &&
-                                  errors.streetName
-                                }
-                                label={<IntlMessages id="user.profile.street" />}
-                                fullWidth
-                                margin="normal"
-                                className="mt-0 mb-4"
-                              />
-                            </Grid>
-                            <Grid item xs={2} style={{ padding: "10px" }}>
-                              {" "}
-                              <TextField
-                                type="text"
-                                name="houseNumber"
-                                value={values.houseNumber}
-                                error={
-                                  errors.houseNumber && touched.houseNumber
-                                }
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={
-                                  errors.houseNumber &&
-                                  touched.houseNumber &&
-                                  errors.houseNumber
-                                }
-                                label={<IntlMessages id="user.profile.houseNumber" />}
-                                fullWidth
-                                margin="normal"
-                                className="mt-0 mb-4"
-                              />
-                            </Grid>
-                            <Grid item xs={2} style={{ padding: "10px" }}>
-                              <TextField
-                                type="text"
-                                name="zipCode"
-                                value={values.zipCode}
-                                error={errors.zipCode && touched.zipCode}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={
-                                  errors.zipCode &&
-                                  touched.zipCode &&
-                                  errors.zipCode
-                                }
-                                label={"Zip Code"}
-                                fullWidth
-                                margin="normal"
-                                className="mt-0 mb-4"
-                              />
-                            </Grid>
-                            <Grid item xs={4} style={{ padding: "10px" }}>
-                              {" "}
-                              <TextField
-                                type="text"
-                                name="city"
-                                value={values.city}
-                                error={errors.city && touched.city}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={
-                                  errors.city && touched.city && errors.city
-                                }
-                                label={<IntlMessages id="user.profile.city" />}
-                                fullWidth
-                                margin="normal"
-                                className="mt-0 mb-4"
-                              />
-                            </Grid>
+
                           </Grid>
                         </div>
 

@@ -31,12 +31,13 @@ class SignUp extends React.Component {
         email: "",
         password: "",
         confirmPassword: "",
-        address: {
-          streetName: "",
-          houseNumber: "",
-          zipCode: "",
-          city: "",
-        },
+        phoneNumber:""
+        // address: {
+        //   streetName: "",
+        //   houseNumber: "",
+        //   zipCode: "",
+        //   city: "",
+        // },
       },
     };
   }
@@ -58,13 +59,13 @@ class SignUp extends React.Component {
     this.setState({ user: tempUser });
   };
 
-  onAddressPropertyChange = (value, propertyName) => {
-    let tempUser = { ...this.state.user };
-    let tempAddress = { ...this.state.user.address };
-    tempAddress[propertyName] = value;
-    tempUser.address = tempAddress;
-    this.setState({ user: tempUser });
-  };
+  // onAddressPropertyChange = (value, propertyName) => {
+  //   let tempUser = { ...this.state.user };
+  //   let tempAddress = { ...this.state.user.address };
+  //   tempAddress[propertyName] = value;
+  //   tempUser.address = tempAddress;
+  //   this.setState({ user: tempUser });
+  // };
 
   prepareUserData = (values) => {
     const user = {
@@ -72,12 +73,13 @@ class SignUp extends React.Component {
       lastName: values.lastName,
       email: values.email,
       password: values.password,
-      address: {
-        zipCode: values.zipCode,
-        city: values.city,
-        streetName: values.streetName,
-        houseNumber: values.houseNumber
-      }
+      phoneNumber: values.phoneNumber,
+      // address: {
+      //   zipCode: values.zipCode,
+      //   city: values.city,
+      //   streetName: values.streetName,
+      //   houseNumber: values.houseNumber
+      // }
     };
     return user;
   };
@@ -90,6 +92,7 @@ class SignUp extends React.Component {
     const emailErrorMsg = <IntlMessages id="signUp.emailError" />;
     const tooShortErrorMsg = <IntlMessages id="signUp.tooShortError" />;
     const passwordMismatchErrorMsg = <IntlMessages id="signUp.passwordMismatchError" />;
+    const phoneNumberLengthErrorMsg = <IntlMessages id="signUp.phoneNumberLengthError" />;
     
     return (
       <div className="app-login-container d-flex justify-content-center align-items-center animated slideInUpTiny animation-duration-3">
@@ -123,10 +126,7 @@ class SignUp extends React.Component {
                   email: "",
                   password: "",
                   confirmPassword: "",
-                  streetName: "",
-                  houseNumber: "",
-                  zipCode: "",
-                  city: "",
+                 phoneNumber:"",
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                   setSubmitting(true);
@@ -154,14 +154,11 @@ class SignUp extends React.Component {
                         passwordMismatchErrorMsg
                       ),
                     }),
-                  zipCode: Yup.number()
+                  phoneNumber: Yup.number()
                     .typeError(numbersErrorMsg)
-                    .required(requiredErrorMsg),
-                  streetName: Yup.string().required(requiredErrorMsg),
-                  houseNumber: Yup.number()
-                    .typeError(numbersErrorMsg)
-                    .required(requiredErrorMsg),
-                  city: Yup.string().required(requiredErrorMsg),
+                    .required(requiredErrorMsg)
+                    .test('len', phoneNumberLengthErrorMsg, (val) => { if(val) return  val.toString().length === 10;}),
+                 
                 })}
               >
                 {(props) => {
@@ -220,7 +217,6 @@ class SignUp extends React.Component {
                         <Grid item xs={12}>
                           {" "}
                           <TextField
-                            // type="email"
                             name="email"
                             value={values.email}
                             error={errors.email && touched.email}
@@ -230,6 +226,23 @@ class SignUp extends React.Component {
                               errors.email && touched.email && errors.email
                             }
                             label={<IntlMessages id="appModule.email" />}
+                            fullWidth
+                            margin="normal"
+                            className="mt-0 mb-2"
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          {" "}
+                          <TextField
+                            name="phoneNumber"
+                            value={values.phoneNumber}
+                            error={errors.phoneNumber && touched.phoneNumber}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            helperText={
+                              errors.phoneNumber && touched.phoneNumber && errors.phoneNumber
+                            }
+                            label={<IntlMessages id="appModule.phoneNumber" />}
                             fullWidth
                             margin="normal"
                             className="mt-0 mb-2"
@@ -276,83 +289,7 @@ class SignUp extends React.Component {
                             className="mt-0 mb-4"
                           />
                         </Grid>
-                        <Grid item xs={6} style={{ paddingRight: "5px" }}>
-                          {" "}
-                          <TextField
-                            type="text"
-                            name="streetName"
-                            value={values.streetName}
-                            error={errors.streetName && touched.streetName}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={
-                              errors.streetName &&
-                              touched.streetName &&
-                              errors.streetName
-                            }
-                            label={"Street"}
-                            fullWidth
-                            margin="normal"
-                            className="mt-0 mb-4"
-                          />
-                        </Grid>
-                        <Grid item xs={6} style={{ paddingLeft: "5px" }}>
-                          {" "}
-                          <TextField
-                            type="text"
-                            name="houseNumber"
-                            value={values.houseNumber}
-                            error={errors.houseNumber && touched.houseNumber}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={
-                              errors.houseNumber &&
-                              touched.houseNumber &&
-                              errors.houseNumber
-                            }
-                            label={"House Number"}
-                            fullWidth
-                            margin="normal"
-                            className="mt-0 mb-4"
-                          />
-                        </Grid>
-                        <Grid item xs={6} style={{ paddingRight: "5px" }}>
-                          <TextField
-                            type="text"
-                            name="zipCode"
-                            value={values.zipCode}
-                            error={errors.zipCode && touched.zipCode}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={
-                              errors.zipCode &&
-                              touched.zipCode &&
-                              errors.zipCode
-                            }
-                            label={"Zip Code"}
-                            fullWidth
-                            margin="normal"
-                            className="mt-0 mb-4"
-                          />
-                        </Grid>
-                        <Grid item xs={6} style={{ paddingLeft: "5px" }}>
-                          {" "}
-                          <TextField
-                            type="text"
-                            name="city"
-                            value={values.city}
-                            error={errors.city && touched.city}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={
-                              errors.city && touched.city && errors.city
-                            }
-                            label={"City"}
-                            fullWidth
-                            margin="normal"
-                            className="mt-0 mb-4"
-                          />
-                        </Grid>
+                        
                       </Grid>
 
                       <div className="mb-3 d-flex align-items-center justify-content-between">
