@@ -11,11 +11,14 @@ import ItemStatus from "../../../../../components/ItemStatus"
 import { NavLink } from "react-router-dom";
 import { Alert } from "reactstrap";
 import IntlMessages from "util/IntlMessages";
-import PropertiesCard from "../../../components/routes/dashboard/routes/Listing/PropertiesCard";
+import PropertiesCard from "../../../components/routes/dashboard/routes/Listing/ItemsCard";
+
+
+const x = [{title:"xxx",prixe:"500"},{title:"yyy",prixe:"400"}];
 
 class Items extends React.Component {
   state = { searchCriteria: { zipCode: "", city: "", textSearch: "" } };
-
+  
   componentDidMount() {
     console.log("componentDidMount", this.props);
     this.props.onFetchAllItems();
@@ -120,7 +123,7 @@ class Items extends React.Component {
               >
                 <Grid container>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-12 order-lg-1">
-                <PropertiesCard/>
+               {this.props.itemList && (<PropertiesCard allItems={this.props.itemList}/>)} 
                 </div>
                
                   {/* {_.map(this.props.itemList, (i, index) => {

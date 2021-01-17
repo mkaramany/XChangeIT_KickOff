@@ -201,7 +201,7 @@ class ViewItem extends React.Component {
 
                   <br></br>
                   <br></br>
-                  <h2><IntlMessages id="items.donor" />: </h2>
+                  <h2><IntlMessages id="items.owner" />: </h2>
 
                   <div
                     style={{
