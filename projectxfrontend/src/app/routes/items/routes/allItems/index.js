@@ -1,20 +1,15 @@
+import { Grid, TextField } from "@material-ui/core";
+import Fab from "@material-ui/core/Fab";
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../../../../../actions/index";
-import ContainerHeader from "../../../../../components/ContainerHeader/index";
-import { Grid, TextField, TableRow, TableCell } from "@material-ui/core";
-import Fab from "@material-ui/core/Fab";
-import _ from "lodash";
-import ItemCard from "../../../../../components/Cards/Item";
-import ItemStatus from "../../../../../components/ItemStatus"
-
 import { NavLink } from "react-router-dom";
 import { Alert } from "reactstrap";
 import IntlMessages from "util/IntlMessages";
-import PropertiesCard from "../../../components/routes/dashboard/routes/Listing/ItemsCard";
+import * as actions from "../../../../../actions/index";
+import ContainerHeader from "../../../../../components/ContainerHeader/index";
+import ItemsCard from "../../../components/routes/dashboard/routes/Listing/ItemsCard";
 
 
-const x = [{title:"xxx",prixe:"500"},{title:"yyy",prixe:"400"}];
 
 class Items extends React.Component {
   state = { searchCriteria: { zipCode: "", city: "", textSearch: "" } };
@@ -123,7 +118,7 @@ class Items extends React.Component {
               >
                 <Grid container>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-12 order-lg-1">
-               {this.props.itemList && (<PropertiesCard allItems={this.props.itemList}/>)} 
+               {this.props.itemList && (<ItemsCard allItems={this.props.itemList}/>)} 
                 </div>
                
                   {/* {_.map(this.props.itemList, (i, index) => {
@@ -155,7 +150,7 @@ class Items extends React.Component {
                         </TableRow>
                       </div>
                       
-                      <PropertiesCard/>
+                      <ItemsCard/>
 
                     );
                   })} */}

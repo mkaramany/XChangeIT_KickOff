@@ -671,6 +671,8 @@
   "items.condition.almostNew":"Almost New",
   "items.condition.good":"Good",
   "items.condition.DIY":"DIY",
+  "items.age":"Age",
+  "items.price":"Price",
   "items.owner":"Owner",
   "request.state.requestPending":"Request Pending",
   "request.state.rejected":"Rejected",

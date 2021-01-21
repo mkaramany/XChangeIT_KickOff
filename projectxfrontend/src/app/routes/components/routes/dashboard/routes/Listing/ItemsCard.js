@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classNames from 'classnames';
-
 import Widget from "components/Widget/index";
 import ItemCardDetails from "./ItemCardDetails";
+import ItemsPaginatedTable from "./ItemsPaginatedTable";
 import IntlMessages from "util/IntlMessages";
 
 const ItemsCard = (props) => {
@@ -63,9 +63,7 @@ const ItemsCard = (props) => {
 
         <TabContent className="jr-tabs-content" activeTab={activeTab}>
           <TabPane tabId={1}>
-            {props.allItems.map((item, index) =>
-              <ItemCardDetails key={index} item={item} />
-            )}
+            <ItemsPaginatedTable items={props.allItems}/>
           </TabPane>
 
           <TabPane tabId={2}>

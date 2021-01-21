@@ -4,7 +4,6 @@ import ItemStatus from "../../../../../../../components/ItemStatus"
 
 function ItemCardDetails({ item }) {
 
-  console.log("PropertiesItemCard", item);
 
   const { id, thumbnail, title, description, price, status } = item;
 

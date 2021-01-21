@@ -173,13 +173,6 @@ class ViewItem extends React.Component {
                   <br></br>
                   <br></br>
 
-                  <h2><IntlMessages id="items.type" />: </h2>
-                  <ItemType
-                    width={100}
-                    type={this.props.itemDetails.type}
-                  ></ItemType>
-                  <br></br>
-                  <br></br>
 
                   <h2><IntlMessages id="items.viewItem.fullDescription" />: </h2>
                   {this.props.itemDetails.description}
@@ -193,10 +186,16 @@ class ViewItem extends React.Component {
                     )}
                   <br></br>
                   <br></br>
-                  <h2><IntlMessages id="items.condition" />: </h2>
+
+                  <h2><IntlMessages id="items.price" />: </h2>
+                    {this.props.itemDetails.price}
+                  <br></br>
+                  <br></br>
+
+                  <h2><IntlMessages id="items.age" />: </h2>
                   <ItemCondition
                     width={100}
-                    condition={this.props.itemDetails.condition}
+                    condition={this.props.itemDetails.age}
                   ></ItemCondition>
 
                   <br></br>
