@@ -6,7 +6,7 @@ import IntlMessages from "util/IntlMessages";
 function ItemCardDetails({ item }) {
 
 
-  const { id, thumbnail, title, description, price, status, producer } = item;
+  const { id, thumbnail, title, description, price, status, producer, totalRating } = item;
 
   return (
     <div className="media jr-featured-item">
@@ -31,18 +31,21 @@ function ItemCardDetails({ item }) {
           <p className="text-grey mb-1">{description}</p>
 
           <div className="d-flex flex-wrap mb-2">
-            <p className="mr-3 mb-1"><span className="text-grey">Bedrooms:</span> 2</p>
+           <p className="mr-3 mb-1"><span className="text-grey">< IntlMessages id="items.location.area" />: </span>{producer.location? producer.location.area.name : ""}</p>
             <p className="mr-3 mb-1"><span className="text-grey">Baths:</span> 3</p>
-            <p className="mr-3 mb-1"><span className="text-grey">Area:</span> 4</p>
+            <p className="mr-3 mb-1"><span className="text-grey">Rooms:</span> 4</p>
             {/* <a className="text-grey text-underline" href="#/"> + {more} more</a> */}
           </div>
           <div className="d-flex flex-row">
             <p className="text-grey mb-1">
-              <i className={`zmdi zmdi-account jr-fs-lg mr-2 d-inline-block align-middle`} />{producer.firstName + " "+ producer.lastName}
+              <i className={`zmdi zmdi-account jr-fs-lg mr-2 d-inline-block align-middle`} />{producer.firstName + " " + producer.lastName}
             </p>
             {/* <p className="text-grey ml-4 mb-1">
               <i className={`zmdi zmdi-calendar-alt jr-fs-lg mr-2 d-inline-block align-middle`} /> 20-01-2021
             </p> */}
+            <p className="text-grey ml-4 mb-1">
+              <i className={`zmdi zmdi-star jr-fs-lg mr-2 d-inline-block align-middle`} /> {totalRating}
+            </p>
           </div>
         </div>
         <div className="jr-featured-content-right">

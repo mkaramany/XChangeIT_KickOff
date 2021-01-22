@@ -675,6 +675,7 @@
   "items.price":"Price",
   "items.price.per24Hrs":"/24 hrs",
   "items.owner":"Owner",
+  "items.location.area":"Area",
   "request.state.requestPending":"Request Pending",
   "request.state.rejected":"Rejected",
   "items.viewItem.back" : "Back",

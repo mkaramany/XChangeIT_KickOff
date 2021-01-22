@@ -15,6 +15,8 @@ public class CustomItem {
 	private String category;
 
 	private User producer;
+	
+	private Double totalRating;
 
 	private String status;
 
@@ -27,7 +29,7 @@ public class CustomItem {
 	private byte[] thumbnail;
 
 	public CustomItem(Integer id, String title, String description, String status, byte[] thumbnail, Double price,
-			String category, User producer) {
+			String category, User producer, Double totalRating) {
 		super();
 		this.id = id;
 		this.status = status;
@@ -37,6 +39,8 @@ public class CustomItem {
 		this.price = price;
 		this.category = category;
 		this.producer = producer;
+		this.totalRating = totalRating;
+		
 	}
 
 	public CustomItem(Integer id, String title, String description, String status, Date publishDate,
@@ -138,5 +142,15 @@ public class CustomItem {
 	public void setThumbnail(byte[] thumbnail) {
 		this.thumbnail = thumbnail;
 	}
+
+	public Double getTotalRating() {
+		return totalRating;
+	}
+
+	public void setTotalRating(Double totalRating) {
+		this.totalRating = totalRating;
+	}
+	
+	
 
 }

@@ -79,6 +79,10 @@ public class User implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "location_id")
+	private Location location;
 
 	private String profilePictureUrl;
 
@@ -214,6 +218,15 @@ public class User implements Serializable {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 	@Override

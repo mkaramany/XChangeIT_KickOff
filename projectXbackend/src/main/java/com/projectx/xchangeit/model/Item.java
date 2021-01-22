@@ -56,7 +56,9 @@ public class Item implements Serializable {
 	
 	private String age;
 	
-	private String location;
+	private String location;//to be removed (add location for a user (area + location free text))
+	
+	private Double totalRating;
 
 	@Lob
 	@Type(type = "org.hibernate.type.BinaryType")
@@ -79,6 +81,14 @@ public class Item implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "item_id", referencedColumnName = "id")
 	private List<Image> images;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "item_id", referencedColumnName = "id")
+	private List<ItemReview> reviews;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "item_id", referencedColumnName = "id")
+	private List<ItemRating> ratings;
 
 	@Transient
 	Slot reservedSlot;
@@ -236,6 +246,22 @@ public class Item implements Serializable {
 
 	public void setThumbnail(byte[] thumbnail) {
 		this.thumbnail = thumbnail;
+	}
+
+	public Double getTotalRating() {
+		return totalRating;
+	}
+
+	public void setTotalRating(Double totalRating) {
+		this.totalRating = totalRating;
+	}
+
+	public List<ItemReview> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<ItemReview> reviews) {
+		this.reviews = reviews;
 	}
 
 	public Slot getReservedSlot() {
