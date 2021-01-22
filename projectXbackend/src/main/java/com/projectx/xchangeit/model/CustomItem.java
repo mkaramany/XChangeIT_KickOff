@@ -12,6 +12,10 @@ public class CustomItem {
 
 	private Double price;
 
+	private String category;
+
+	private User producer;
+
 	private String status;
 
 	private Image image;
@@ -22,11 +26,8 @@ public class CustomItem {
 
 	private byte[] thumbnail;
 
-//	public CustomItem() {
-//		super();
-//	}
-
-	public CustomItem(Integer id, String title, String description, String status, byte[] thumbnail, Double price) {
+	public CustomItem(Integer id, String title, String description, String status, byte[] thumbnail, Double price,
+			String category, User producer) {
 		super();
 		this.id = id;
 		this.status = status;
@@ -34,6 +35,8 @@ public class CustomItem {
 		this.description = description;
 		this.thumbnail = thumbnail;
 		this.price = price;
+		this.category = category;
+		this.producer = producer;
 	}
 
 	public CustomItem(Integer id, String title, String description, String status, Date publishDate,
@@ -86,6 +89,22 @@ public class CustomItem {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public User getProducer() {
+		return producer;
+	}
+
+	public void setProducer(User producer) {
+		this.producer = producer;
 	}
 
 	public Image getImage() {

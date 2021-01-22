@@ -595,7 +595,7 @@
   "footer.contactUs":"Contact Us",
   "footer.termsOfUse":"Terms of Use",
   "footer.disclaimer":"Privacy Disclaimer",
-  "items.status.available":"For Rent",
+  "items.status.available":"Available",
   "items.status.reserved":"Reserved",
   "items.status.taken":"Taken",
   "items.status.removed":"Removed",
@@ -673,6 +673,7 @@
   "items.condition.DIY":"DIY",
   "items.age":"Age",
   "items.price":"Price",
+  "items.price.per24Hrs":"/24 hrs",
   "items.owner":"Owner",
   "request.state.requestPending":"Request Pending",
   "request.state.rejected":"Rejected",
@@ -682,7 +683,12 @@
   "items.viewItem.tooltip.producerSameAsReceiver":"Producers can't request their own items",
   "items.viewItem.tooltip.noItemsForTrading":"You don't have items for trading",
   "items.viewItem.tooltip.loginToRequest":"Please login To request items",
-  "items.viewItem.map" : "Map"
+  "items.viewItem.map" : "Map",
+  "items.category.all":"All",
+  "items.category.activityEquipment":"Activity Equipment",
+  "items.category.sportsEquipment":"Sports Equipment",
+  "items.category.handymanTools":"Handyman Tools"
+  
   
 
   

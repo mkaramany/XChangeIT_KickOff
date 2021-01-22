@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import ItemStatus from "../../../../../../../components/ItemStatus"
+import IntlMessages from "util/IntlMessages";
 
 function ItemCardDetails({ item }) {
 
 
-  const { id, thumbnail, title, description, price, status } = item;
+  const { id, thumbnail, title, description, price, status, producer } = item;
 
   return (
     <div className="media jr-featured-item">
@@ -20,11 +21,11 @@ function ItemCardDetails({ item }) {
       </div>
       <div className="media-body jr-featured-content">
         <div className="jr-featured-content-left">
-            <ItemStatus
-              width={100}
-              status={status}
-            ></ItemStatus>
-            
+          <ItemStatus
+            width={100}
+            status={status}
+          ></ItemStatus>
+
           <h3 className="mb-1">{title}</h3>
 
           <p className="text-grey mb-1">{description}</p>
@@ -37,17 +38,17 @@ function ItemCardDetails({ item }) {
           </div>
           <div className="d-flex flex-row">
             <p className="text-grey mb-1">
-              <i className={`zmdi zmdi-account jr-fs-lg mr-2 d-inline-block align-middle`} />name
+              <i className={`zmdi zmdi-account jr-fs-lg mr-2 d-inline-block align-middle`} />{producer.firstName + " "+ producer.lastName}
             </p>
-            <p className="text-grey ml-4 mb-1">
+            {/* <p className="text-grey ml-4 mb-1">
               <i className={`zmdi zmdi-calendar-alt jr-fs-lg mr-2 d-inline-block align-middle`} /> 20-01-2021
-            </p>
+            </p> */}
           </div>
         </div>
         <div className="jr-featured-content-right">
           <div>
             <h2 className="mb-0 jr-font-weight-medium">${price}</h2>
-            <p className="text-grey jr-fs-sm"> sqft</p>
+            <p className="text-grey jr-fs-sm"> < IntlMessages id="items.price.per24Hrs" /></p>
           </div>
           <NavLink
             className="prepend-icon"

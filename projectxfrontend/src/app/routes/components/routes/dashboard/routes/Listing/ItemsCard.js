@@ -1,14 +1,25 @@
-import React, { useState } from "react";
-import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classNames from 'classnames';
 import Widget from "components/Widget/index";
-import ItemCardDetails from "./ItemCardDetails";
-import ItemsPaginatedTable from "./ItemsPaginatedTable";
+import React, { useState } from "react";
+import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import IntlMessages from "util/IntlMessages";
+import ItemsPaginatedTable from "./ItemsPaginatedTable";
 
 const ItemsCard = (props) => {
 
   const [activeTab, setActiveTab] = useState(1);
+
+  const sportEquipment = props.allItems.filter(function (item) {
+    return item.category === "SPORTS_EQUIPMENT";
+  });
+
+  const activityEquipment = props.allItems.filter(function (item) {
+    return item.category === "ACTIVITY_EQUIPMENT";
+  });
+
+  const handymanTools = props.allItems.filter(function (item) {
+    return item.category === "HANDYMAN_TOOLS";
+  });
 
   return (
     <Widget styleName='mb-0'>
@@ -27,8 +38,8 @@ const ItemsCard = (props) => {
                   setActiveTab(1);
                 }}
               >
-                All
-                </NavLink>
+                <IntlMessages id={"items.category.all"} />
+              </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
@@ -37,8 +48,8 @@ const ItemsCard = (props) => {
                   setActiveTab(2);
                 }}
               >
-                New Jercy
-                </NavLink>
+                <IntlMessages id={"items.category.sportsEquipment"} />
+              </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
@@ -46,8 +57,9 @@ const ItemsCard = (props) => {
                 onClick={() => {
                   setActiveTab(3);
                 }}>
-                colorado
-                </NavLink>
+                <IntlMessages id={"items.category.handymanTools"} />
+
+              </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
@@ -55,31 +67,28 @@ const ItemsCard = (props) => {
                 onClick={() => {
                   setActiveTab(4);
                 }}>
-                Albama
-                </NavLink>
+                <IntlMessages id={"items.category.activityEquipment"} />
+
+              </NavLink>
             </NavItem>
           </Nav>
         </div>
 
         <TabContent className="jr-tabs-content" activeTab={activeTab}>
           <TabPane tabId={1}>
-            <ItemsPaginatedTable items={props.allItems}/>
+            <ItemsPaginatedTable items={props.allItems} />
           </TabPane>
 
           <TabPane tabId={2}>
-            {props.allItems.map((item, index) =>
-              <ItemCardDetails key={index} item={item} />
-            )}
+            <ItemsPaginatedTable items={sportEquipment} />
           </TabPane>
+
           <TabPane tabId={3}>
-            {props.allItems.map((item, index) =>
-              <ItemCardDetails key={index} item={item} />
-            )}
+            <ItemsPaginatedTable items={handymanTools} />
           </TabPane>
+
           <TabPane tabId={4}>
-            {props.allItems.map((item, index) =>
-              <ItemCardDetails key={index} item={item} />
-            )}
+            <ItemsPaginatedTable items={activityEquipment} />
           </TabPane>
         </TabContent>
       </div>
