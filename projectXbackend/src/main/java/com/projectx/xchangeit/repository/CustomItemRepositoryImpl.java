@@ -89,7 +89,7 @@ public class CustomItemRepositoryImpl implements CustomItemRepository {
 
 	@Override
 	public List<CustomItem> listAllNonDeletedItems() {
-		String query = "SELECT NEW com.projectx.xchangeit.model.CustomItem(i.id, i.title, i.description, i.status, i.thumbnail, i.price, i.category, i.producer, i.totalRating) FROM Item i WHERE i.deleted= false ORDER BY i.publishDate";
+		String query = "SELECT NEW com.projectx.xchangeit.model.CustomItem(i.id, i.title, i.description, i.status, i.thumbnail, i.price, i.category, i.producer, i.totalRating, i.location) FROM Item i WHERE i.deleted= false ORDER BY i.publishDate";
 		TypedQuery<CustomItem> typedQuery = entityManager.createQuery(query, CustomItem.class);
 		return typedQuery.getResultList();
 	}

@@ -15,12 +15,10 @@ public class CustomItem {
 	private String category;
 
 	private User producer;
-	
+
 	private Double totalRating;
 
 	private String status;
-
-	private Image image;
 
 	private Date publishDate;
 
@@ -28,8 +26,10 @@ public class CustomItem {
 
 	private byte[] thumbnail;
 
+	private Location location;
+
 	public CustomItem(Integer id, String title, String description, String status, byte[] thumbnail, Double price,
-			String category, User producer, Double totalRating) {
+			String category, User producer, Double totalRating, Location location) {
 		super();
 		this.id = id;
 		this.status = status;
@@ -40,7 +40,8 @@ public class CustomItem {
 		this.category = category;
 		this.producer = producer;
 		this.totalRating = totalRating;
-		
+		this.location = location;
+
 	}
 
 	public CustomItem(Integer id, String title, String description, String status, Date publishDate,
@@ -111,14 +112,6 @@ public class CustomItem {
 		this.producer = producer;
 	}
 
-	public Image getImage() {
-		return image;
-	}
-
-	public void setImage(Image image) {
-		this.image = image;
-	}
-
 	public Date getPublishDate() {
 		return publishDate;
 	}
@@ -150,7 +143,14 @@ public class CustomItem {
 	public void setTotalRating(Double totalRating) {
 		this.totalRating = totalRating;
 	}
-	
-	
 
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	
 }

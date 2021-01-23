@@ -217,12 +217,12 @@ public class ItemServiceImpl implements ItemService {
 
 	}
 	
-	private void setItemPrimaryImage(List<CustomItem> items, List<Image> images) {
-	for (CustomItem item : items) {
-		item.setImage(images.stream().filter(image -> image.getItemId().equals(item.getId()))
-				.collect(Collectors.toList()).get(0));
-		;
-	}
-
-}
+//	private void setItemPrimaryImage(List<CustomItem> items, List<Image> images) {
+//	for (CustomItem item : items) {
+//		item.setImage(images.stream().filter(image -> image.getItemId().equals(item.getId()))
+//				.collect(Collectors.toList()).get(0));
+//		;
+//	}
+//}
+	
 }

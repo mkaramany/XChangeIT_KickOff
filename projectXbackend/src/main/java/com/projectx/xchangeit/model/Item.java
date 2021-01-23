@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
@@ -55,9 +56,7 @@ public class Item implements Serializable {
 	private Double cancellationFees;
 	
 	private String age;
-	
-	private String location;//to be removed (add location for a user (area + location free text))
-	
+		
 	private Double totalRating;
 
 	@Lob
@@ -89,6 +88,10 @@ public class Item implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "item_id", referencedColumnName = "id")
 	private List<ItemRating> ratings;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "location_id")
+	private Location location;
 
 	@Transient
 	Slot reservedSlot;
@@ -200,11 +203,20 @@ public class Item implements Serializable {
 		this.age = age;
 	}
 
-	public String getLocation() {
+
+	public List<ItemRating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<ItemRating> ratings) {
+		this.ratings = ratings;
+	}
+
+	public Location getLocation() {
 		return location;
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 

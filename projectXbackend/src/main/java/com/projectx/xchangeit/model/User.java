@@ -69,8 +69,6 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private AuthProvider provider;
 	
-
-
 	// bi-directional many-to-one association to Item
 	// @OneToMany(fetch = FetchType.LAZY, mappedBy="user")
 	@Transient
@@ -80,9 +78,6 @@ public class User implements Serializable {
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "location_id")
-	private Location location;
 
 	private String profilePictureUrl;
 
@@ -220,14 +215,6 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
-	}
 
 	@Override
 	public String toString() {
