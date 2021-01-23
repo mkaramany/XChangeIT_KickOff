@@ -49,6 +49,8 @@ public class Item implements Serializable {
 	
 	private String activityType;
 	
+	private String color;
+	
 	private Double price;
 	
 	private Double deposit;
@@ -169,6 +171,18 @@ public class Item implements Serializable {
 
 	public void setActivityType(String activityType) {
 		this.activityType = activityType;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public Double getPrice() {

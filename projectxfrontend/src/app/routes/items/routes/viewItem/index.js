@@ -1,19 +1,17 @@
 import { Avatar, Button, Grid, Tooltip } from "@material-ui/core";
-import _ from "lodash";
-import Moment from "moment";
+import XChangeItDialog from "components/XChangeItDialog";
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import IntlMessages from "util/IntlMessages";
 import * as actions from "../../../../../actions/index";
 import ContainerHeader from "../../../../../components/ContainerHeader/index";
+import ItemCategory from "../../../../../components/ItemCategory";
+import ItemAge from "../../../../../components/ItemAge";
 import ItemStatus from "../../../../../components/ItemStatus";
-import ItemType from "../../../../../components/ItemType";
-import ItemCondition from "../../../../../components/ItemCondition";
-import AddressDisplay from "./../../../../../components/AddressDisplay/index";
 import PhotoCollage from "./../../../../../components/PhotoCollage/index";
 import PopUpMessage from "./../../../../../components/PopUpMessage/index";
-import IntlMessages from "util/IntlMessages";
-import XChangeItDialog from "components/XChangeItDialog";
+
 
 class ViewItem extends React.Component {
   state = {
@@ -42,22 +40,10 @@ class ViewItem extends React.Component {
     let reservedItem = { ...this.props.itemDetails };
     reservedItem.receiver = { ...this.props.loggedInUser };
     reservedItem.images = [];
-    reservedItem.slots = this.getUpdatedSlots();
     this.props.onReserveItem(reservedItem);
   };
 
-  getUpdatedSlots = () => {
-    const selectedSlotId = this.state.selectedSlotId;
-    let updatedSlots = _.map(this.props.itemDetails.slots, (slot) => {
-      if (slot.id.toString() === selectedSlotId) {
-        let reservedSlot = { ...slot };
-        reservedSlot.reserved = true;
-        return reservedSlot;
-      }
-      return slot;
-    });
-    return updatedSlots;
-  };
+
 
   goBack() {
     this.props.history.goBack();
@@ -105,18 +91,6 @@ class ViewItem extends React.Component {
 
   canUserRequest = () => {
 
-    if (this.isReceiverSameAsProducer()) {
-      return false;
-    }
-
-    if (this.props.itemDetails.type === "TRADE" && !this.isAllowedToTrade()) {
-      return false;
-    }
-
-    if (!this.props.loggedInUser) {
-      return false;
-    }
-
     return true;
   }
 
@@ -160,12 +134,12 @@ class ViewItem extends React.Component {
                   heading={this.props.itemDetails.title}
                 ></PhotoCollage>
 
-                <div className="jr-card">
-                  <h2><IntlMessages id="items.viewItem.map" />: </h2>
-                </div>
+                {/* <div className="jr-card">
+                  <h3><IntlMessages id="items.viewItem.map" />: </h3>
+                </div> */}
 
                 <div className="jr-card">
-                  <h2><IntlMessages id="items.viewItem.status" />: </h2>
+                  <h3><IntlMessages id="items.viewItem.status" />: </h3>
                   <ItemStatus
                     width={100}
                     status={this.props.itemDetails.status}
@@ -174,34 +148,58 @@ class ViewItem extends React.Component {
                   <br></br>
 
 
-                  <h2><IntlMessages id="items.viewItem.fullDescription" />: </h2>
+                  <h3><IntlMessages id="items.viewItem.fullDescription" />: </h3>
                   {this.props.itemDetails.description}
                   <br></br>
                   <br></br>
-                  {this.props.loggedInUser &&
-                    this.props.loggedInUser.address && (
-                      <AddressDisplay
-                        address={this.props.loggedInUser.address}
-                      />
-                    )}
-                  <br></br>
-                  <br></br>
 
-                  <h2><IntlMessages id="items.price" />: </h2>
-                    {this.props.itemDetails.price}
-                  <br></br>
-                  <br></br>
-
-                  <h2><IntlMessages id="items.age" />: </h2>
-                  <ItemCondition
+                  <h3><IntlMessages id="items.viewItem.category" />: </h3>
+                  <ItemCategory
                     width={100}
-                    condition={this.props.itemDetails.age}
-                  ></ItemCondition>
-
+                    age={this.props.itemDetails.category}
+                  ></ItemCategory>
                   <br></br>
                   <br></br>
-                  <h2><IntlMessages id="items.owner" />: </h2>
 
+                  <h3><IntlMessages id="items.price" />: </h3>
+                  {this.props.itemDetails.price}
+                  <br></br>
+                  <br></br>
+
+                  <h3><IntlMessages id="items.deposit" />: </h3>
+                  {this.props.itemDetails.deposit}
+                  <br></br>
+                  <br></br>
+
+                  <h3><IntlMessages id="items.cancellationFees" />: </h3>
+                  {this.props.itemDetails.cancellationFees}
+                  <br></br>
+                  <br></br>
+
+                  <h3><IntlMessages id="items.age" />: </h3>
+                  <ItemAge
+                    width={100}
+                    age={this.props.itemDetails.age}
+                  ></ItemAge>
+                  <br></br>
+                  <br></br>
+
+                  <h3><IntlMessages id="items.viewItem.color" />: </h3>
+                  {this.props.itemDetails.color}
+                  <br></br>
+                  <br></br>
+
+                  <h3><IntlMessages id="items.viewItem.activityType" />: </h3>
+                  {this.props.itemDetails.activityType}
+                  <br></br>
+                  <br></br>
+
+                  <h3><IntlMessages id="items.viewItem.location" />: </h3>
+                  {this.props.itemDetails.location && this.props.itemDetails.location.area.name}
+                  <br></br>
+                  <br></br>
+
+                  <h3><IntlMessages id="items.owner" />: </h3>
                   <div
                     style={{
                       marginTop: "10px",
