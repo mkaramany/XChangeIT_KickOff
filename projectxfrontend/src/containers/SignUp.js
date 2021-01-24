@@ -154,10 +154,10 @@ class SignUp extends React.Component {
                         passwordMismatchErrorMsg
                       ),
                     }),
-                  phoneNumber: Yup.number()
-                    .typeError(numbersErrorMsg)
-                    .required(requiredErrorMsg)
-                    .test('len', phoneNumberLengthErrorMsg, (val) => { if(val) return  val.toString().length === 10;}),
+                  // phoneNumber: Yup.number()
+                  //   .typeError(numbersErrorMsg)
+                  //   .required(requiredErrorMsg)
+                  //   .test('len', phoneNumberLengthErrorMsg, (val) => { if(val) return  val.toString().length === 10;}),
                  
                 })}
               >

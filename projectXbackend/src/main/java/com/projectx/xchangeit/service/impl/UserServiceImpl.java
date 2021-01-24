@@ -13,6 +13,7 @@ import com.projectx.xchangeit.model.RoleEnum;
 import com.projectx.xchangeit.model.User;
 import com.projectx.xchangeit.repository.UserRepository;
 import com.projectx.xchangeit.service.UserService;
+import com.projectx.xchangeit.service.XChangeItSMSService;
 import com.projectx.xchangeit.util.CodeGenerationUtil;
 
 @Service
@@ -23,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 
 	@Autowired
-	XChangeItMailServiceImpl xchangeitMailService;
+	XChangeItSMSService xchangeitSMSService;
 
 	@Override
 	public void test() {
@@ -62,7 +63,22 @@ public class UserServiceImpl implements UserService {
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean existsByPhoneNumber(String number) {
+		User user = loadUserByPhoneNumber(number);
+		if (user != null) {
+			return true;
+		}
+		return false;
+	}
 
+
+	@Override
+	public User loadUserByPhoneNumber(String number) {
+		return userRepository.findByPhoneNumber(number);
+	}
+	
 	@Override
 	public void signUp(User newXchangeItUser) {
 
@@ -75,11 +91,11 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(newXchangeItUser);
 
 		try {
-			sendVerificationMail(newXchangeItUser.getEmail(), newXchangeItUser.getFirstName(), verificationCode);
+			sendVerificationSMS(newXchangeItUser.getPhoneNumber(), newXchangeItUser.getFirstName(), verificationCode);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.err.println("Could not send email message");
+			System.err.println("Could not send SMS");
 		}
 
 	}
@@ -90,8 +106,8 @@ public class UserServiceImpl implements UserService {
 	 * case both codes match, the boolean "first time login is set to false" and
 	 * return false in case of mismatch, return false
 	 */
-	public boolean verifyUser(String username, String verificationCode) {
-		User user = loadUserByUsername(username);
+	public boolean verifyUser(String phoneNumber, String verificationCode) {
+		User user = loadUserByPhoneNumber(phoneNumber);
 		if (user != null) {
 			if (user.getVerificationCode().equals(Integer.valueOf(verificationCode))) {
 				user.setFirstLogin(false);
@@ -127,10 +143,10 @@ public class UserServiceImpl implements UserService {
 		userRepository.delete(user);
 	}
 
-	private void sendVerificationMail(String to, String recipientName, String verificationCode)
+	private void sendVerificationSMS(String to, String recipientName, String verificationCode)
 			throws MessagingException {
 
-		xchangeitMailService.sendVerificationMail(to, recipientName, verificationCode);
+		xchangeitSMSService.sendVerificationSMS(to, recipientName, verificationCode);
 	}
 
 }

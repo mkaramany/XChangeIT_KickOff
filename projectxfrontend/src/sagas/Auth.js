@@ -43,8 +43,8 @@ const signInUserWithEmailPasswordRequest = async (email, password) =>
     .then((authUser) => authUser)
     .catch((error) => error);
 
-const verifyUserWithCodeRequest = async (email, verificationCode) =>
-  await AuthService.verifyUser(email, verificationCode)
+const verifyUserWithCodeRequest = async (phoneNumber, verificationCode) =>
+  await AuthService.verifyUser(phoneNumber, verificationCode)
     .then((authUser) => authUser)
     .catch((error) => error);
 
@@ -89,11 +89,11 @@ function* signInUserWithEmailPassword({ payload }) {
 
 function* verifyUserWithCode({ payload }) {
   console.log("verifyUserWithCode saga", payload);
-  const { email, verificationCode } = payload;
+  const { phoneNumber, verificationCode } = payload;
   try {
     const verifiedUser = yield call(
       verifyUserWithCodeRequest,
-      email,
+      phoneNumber,
       verificationCode
     );
     console.log("verifyUserWithCode", verifiedUser);

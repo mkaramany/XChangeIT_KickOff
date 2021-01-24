@@ -30,7 +30,7 @@ export default (state = INIT_STATE, action) => {
         ...state,
         loader: false,
         authUser: {},
-        emailToVerify: action.payload.email,
+        phoneNumberToVerify: action.payload.phoneNumber,
         initURL: "/verify",
       };
     }

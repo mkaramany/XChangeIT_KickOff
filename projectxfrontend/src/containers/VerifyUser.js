@@ -14,10 +14,13 @@ import { Alert } from "reactstrap";
 
 
 class VerifyUser extends React.Component {
-  state = { email: this.props.emailToVerify, verificationCode: "" };
+  
+
+  state = { phoneNumber:"+97333115252", verificationCode: "" };
 
   render() {
-    const { email, verificationCode } = this.state;
+    console.log("verify component props", this.props);
+    const { phoneNumber, verificationCode } = this.state;
     const { showMessage, loader, alertMessage } = this.props;
 
     return (
@@ -36,7 +39,7 @@ class VerifyUser extends React.Component {
           <div className="app-login-content">
             <div className="app-login-header mb-4">
               <Alert color="warning">
-              <IntlMessages id="verification.msg" /> {this.state.email}.
+              <IntlMessages id="verification.msg" /> {this.state.phoneNumber}.
               </Alert>
             </div>
             <div className="app-login-header mb-4">
@@ -47,9 +50,9 @@ class VerifyUser extends React.Component {
               <form>
                 <fieldset>
                   <TextField
-                    label={ <IntlMessages id="verification.email" />}
+                    label={ <IntlMessages id="verification.phoneNumber" />}
                     fullWidth
-                    value={this.state.email}
+                    value={this.state.phoneNumber}
                     margin="normal"
                     className="mt-1 my-sm-4"
                   />
@@ -70,7 +73,7 @@ class VerifyUser extends React.Component {
                       onClick={() => {
                         this.props.showAuthLoader();
                         this.props.userVerification({
-                          email,
+                          phoneNumber,
                           verificationCode,
                         });
                       }}
@@ -98,8 +101,8 @@ class VerifyUser extends React.Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  const { loader, alertMessage, showMessage, emailToVerify } = auth;
-  return { loader, alertMessage, showMessage, emailToVerify };
+  const { loader, alertMessage, showMessage, phoneNumberToVerify } = auth;
+  return { loader, alertMessage, showMessage, phoneNumberToVerify };
 };
 
 export default connect(mapStateToProps, {

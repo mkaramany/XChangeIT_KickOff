@@ -9,6 +9,7 @@ import com.projectx.xchangeit.service.AddressService;
 import com.projectx.xchangeit.service.ItemService;
 import com.projectx.xchangeit.service.SlotService;
 import com.projectx.xchangeit.service.XChangeItMailService;
+import com.projectx.xchangeit.service.XChangeItSMSService;
 import com.projectx.xchangeit.service.UserService;
 
 @Component
@@ -31,6 +32,9 @@ public class StartUp implements CommandLineRunner {
 
 	@Autowired
 	private SlotService slotService;
+	
+	@Autowired
+	private XChangeItSMSService smsService;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -82,6 +86,10 @@ public class StartUp implements CommandLineRunner {
 //		}
 		
 		//itemRepository.listZ();
+		
+		String to="+97333115252";
+		String body = "Welcome to RentItOut SMS Service";
+		smsService.sendSMS(to, body);
 
 	}
 

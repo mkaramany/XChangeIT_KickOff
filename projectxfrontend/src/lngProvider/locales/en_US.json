@@ -654,7 +654,7 @@
   "signUp.tooShortError":"Too Short",
   "signUp.emailError":"Incorrect Email Format",
   "signUp.phoneNumberLengthError":"Must be exactly 10 digits",
-  "verification.email":"Email",
+  "verification.phoneNumber":"Phone Number",
   "verification.code":"Verification Code",
   "verification.msg":"A Verification Code was sent to",
   "verification.btn":"Verify",

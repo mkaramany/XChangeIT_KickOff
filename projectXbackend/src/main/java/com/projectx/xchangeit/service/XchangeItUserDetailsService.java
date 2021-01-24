@@ -23,8 +23,8 @@ public class XchangeItUserDetailsService implements UserDetailsService {
 
 	@Override
 	@Transactional
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		User user = userService.loadUserByUsername(email);
+	public UserDetails loadUserByUsername(String phoneNumber) throws UsernameNotFoundException {
+		User user = userService.loadUserByPhoneNumber(phoneNumber);
 
 		return UserPrincipal.create(user);
 	}

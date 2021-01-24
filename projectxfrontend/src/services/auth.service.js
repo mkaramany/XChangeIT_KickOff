@@ -40,11 +40,11 @@ class AuthService {
   }
 
   //verifies and returns an authenticated instance of the user
-  verifyUser(email, verificationCode) {
-    console.log("inside auth serv verifyUser", email, verificationCode);
+  verifyUser(phoneNumber, verificationCode) {
+    console.log("inside auth serv verifyUser", phoneNumber, verificationCode);
     return axios
       .post(API_BASE_URL + "/verify", {
-        email,
+        phoneNumber,
         verificationCode,
       })
       .then((response) => {

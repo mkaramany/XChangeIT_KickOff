@@ -14,7 +14,7 @@ public interface UserService {
 
 	void signUp(User registeredUser);
 
-	boolean verifyUser(String username, String verificationCode);
+	boolean verifyUser(String phoneNumber, String verificationCode);
 
 	User getUserById(Integer id);
 
@@ -25,6 +25,10 @@ public interface UserService {
 	void deleteUser(User user);
 
 	Optional<User> findById(Integer id);
+
+	boolean existsByPhoneNumber(String number);
+
+	User loadUserByPhoneNumber(String number);
 	
 
 }

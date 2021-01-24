@@ -95,7 +95,11 @@ public class BaseController {
 
 		if (userService.existsByEmail(user.getEmail())) {
 			return ResponseEntity.ok().body(new MessageResponse("Email is already in use!"));
-		}	
+		}
+		
+		if (userService.existsByPhoneNumber(user.getPhoneNumber())) {
+			return ResponseEntity.ok().body(new MessageResponse("Phone number is already in use!"));
+		}
 
 		// Create new user's account (encode password)
 		User newXChangeItUser = user;
@@ -119,11 +123,11 @@ public class BaseController {
 	@RequestMapping(value = "/verify", method = RequestMethod.POST)
 	public ResponseEntity<?> verifyUser(@RequestBody VerificationRequest request) {
 
-		if (!userService.verifyUser(request.getEmail(), request.getVerificationCode())) {
+		if (!userService.verifyUser(request.getPhoneNumber(), request.getVerificationCode())) {
 			return ResponseEntity.ok().body(new MessageResponse("Invalid Verification Code!"));
 		}
 
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getPhoneNumber());
 
 		UserPrincipal userPrincipal = (UserPrincipal) userDetails;
 		final String jwt = jwtTokenProvider.createToken(userPrincipal);
