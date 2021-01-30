@@ -6,8 +6,6 @@ import com.projectx.xchangeit.model.User;
 
 public interface UserService {
 
-	void test();
-
 	User loadUserByUsername(String username);
 
 	boolean existsByEmail(String email);

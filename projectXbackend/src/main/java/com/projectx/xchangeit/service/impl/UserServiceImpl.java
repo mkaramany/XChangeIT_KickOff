@@ -26,13 +26,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	XChangeItSMSService xchangeitSMSService;
 
-	@Override
-	public void test() {
-		List<User> users = (List<User>) userRepository.findAll();
-		for (User user : users) {
-			System.out.println("user " + user.toString());
-		}
-	}
 
 	@Override
 	public User loadUserByUsername(String username) {

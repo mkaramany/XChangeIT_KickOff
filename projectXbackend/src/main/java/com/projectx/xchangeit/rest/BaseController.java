@@ -55,15 +55,6 @@ public class BaseController {
 	@Autowired
 	PasswordEncoder encoder;
 
-	@RequestMapping({ "/hello" })
-	public String firstPage(HttpServletRequest request) {
-		return "Hello World";
-	}
-
-	@RequestMapping({ "/admin/test" })
-	public String adminPage() {
-		return "Hello Admin";
-	}
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
