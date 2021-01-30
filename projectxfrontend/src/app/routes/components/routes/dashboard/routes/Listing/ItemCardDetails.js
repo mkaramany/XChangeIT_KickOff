@@ -28,12 +28,12 @@ function ItemCardDetails({ item }) {
 
           <h3 className="mb-1">{title}</h3>
 
-          <p className="text-grey mb-1">{description}</p>
+          {/* <p className="text-grey mb-1">{description}</p> */}
 
           <div className="d-flex flex-wrap mb-2">
            <p className="mr-3 mb-1"><span className="text-grey">< IntlMessages id="items.location.area" />: </span>{location? location.area.name : ""}</p>
-            <p className="mr-3 mb-1"><span className="text-grey">Baths:</span> 3</p>
-            <p className="mr-3 mb-1"><span className="text-grey">Rooms:</span> 4</p>
+            {/* <p className="mr-3 mb-1"><span className="text-grey">Baths:</span> 3</p> */}
+            {/* <p className="mr-3 mb-1"><span className="text-grey">Rooms:</span> 4</p> */}
             {/* <a className="text-grey text-underline" href="#/"> + {more} more</a> */}
           </div>
           <div className="d-flex flex-row">
