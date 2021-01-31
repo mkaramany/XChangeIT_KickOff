@@ -93,6 +93,7 @@ class SignUp extends React.Component {
     const tooShortErrorMsg = <IntlMessages id="signUp.tooShortError" />;
     const passwordMismatchErrorMsg = <IntlMessages id="signUp.passwordMismatchError" />;
     const phoneNumberLengthErrorMsg = <IntlMessages id="signUp.phoneNumberLengthError" />;
+    const phoneNumberPlaceholder = <IntlMessages id="signUp.phoneNumberPlaceholder" />;
     
     return (
       <div className="app-login-container d-flex justify-content-center align-items-center animated slideInUpTiny animation-duration-3">
@@ -154,10 +155,10 @@ class SignUp extends React.Component {
                         passwordMismatchErrorMsg
                       ),
                     }),
-                  // phoneNumber: Yup.number()
-                  //   .typeError(numbersErrorMsg)
-                  //   .required(requiredErrorMsg)
-                  //   .test('len', phoneNumberLengthErrorMsg, (val) => { if(val) return  val.toString().length === 10;}),
+                  phoneNumber: Yup.number()
+                    .typeError(numbersErrorMsg)
+                    .required(requiredErrorMsg)
+                    .test('len', phoneNumberLengthErrorMsg, (val) => { if(val) return  val.toString().length === 10;}),
                  
                 })}
               >
@@ -242,7 +243,7 @@ class SignUp extends React.Component {
                             helperText={
                               errors.phoneNumber && touched.phoneNumber && errors.phoneNumber
                             }
-                            label={<IntlMessages id="appModule.phoneNumber" />}
+                            label={phoneNumberPlaceholder}
                             fullWidth
                             margin="normal"
                             className="mt-0 mb-2"
