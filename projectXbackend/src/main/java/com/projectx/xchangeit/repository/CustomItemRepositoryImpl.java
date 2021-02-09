@@ -16,6 +16,7 @@ import org.springframework.util.StringUtils;
 import com.projectx.xchangeit.model.CustomItem;
 import com.projectx.xchangeit.model.Image;
 import com.projectx.xchangeit.model.Item;
+import com.projectx.xchangeit.model.ItemAgeEnum;
 import com.projectx.xchangeit.model.ItemSearchCriteria;
 
 public class CustomItemRepositoryImpl implements CustomItemRepository {
@@ -42,17 +43,24 @@ public class CustomItemRepositoryImpl implements CustomItemRepository {
 			predicates.add(criteriaBuilder.or(titlePredicate, descriptionPredicate));
 		}
 
-		if (!StringUtils.isEmpty(searchCriteria.getZipCode())) {
-			Predicate zipCodePredicate = criteriaBuilder
-					.equal(itemRoot.get("producer").get("address").<String>get("zipCode"), searchCriteria.getZipCode());
-			predicates.add(zipCodePredicate);
+		if (searchCriteria.getMinPrice() != null || searchCriteria.getMaxPrice() != null) {
+
+			Double minPrice = searchCriteria.getMinPrice() != null ? searchCriteria.getMinPrice() : 0.0;
+			Double maxPrice = searchCriteria.getMaxPrice() != null ? searchCriteria.getMaxPrice() : Double.MAX_VALUE;
+
+			Predicate pricePredicate = criteriaBuilder.between(itemRoot.get("price"), minPrice, maxPrice);
+			predicates.add(pricePredicate);
 		}
 
-		if (!StringUtils.isEmpty(searchCriteria.getCity())) {
-			Predicate cityPredicate = criteriaBuilder.equal(
-					criteriaBuilder.lower(itemRoot.get("producer").get("address").<String>get("city")),
-					searchCriteria.getCity().toLowerCase());
-			predicates.add(cityPredicate);
+		if (!StringUtils.isEmpty(searchCriteria.getAge())) {
+			Predicate agePredicate = criteriaBuilder.equal(itemRoot.get("age"),
+					ItemAgeEnum.valueOf(searchCriteria.getAge()).toString());
+			predicates.add(agePredicate);
+		}
+
+		if (!StringUtils.isEmpty(searchCriteria.getColor())) {
+			Predicate colorPredicate = criteriaBuilder.equal(itemRoot.get("color"), searchCriteria.getColor());
+			predicates.add(colorPredicate);
 		}
 
 		criteriaQuery.where(predicates.toArray(new Predicate[0]));
@@ -82,7 +90,8 @@ public class CustomItemRepositoryImpl implements CustomItemRepository {
 
 	@Override
 	public List<CustomItem> listUserItems(Integer userId) {
-		String query = "SELECT NEW com.projectx.xchangeit.model.CustomItem(i.id, i.title, i.description, i.status, i.publishDate, i.lastModifiedDate, i.thumbnail) FROM Item i WHERE i.deleted= false and i.producer.id= "+userId;
+		String query = "SELECT NEW com.projectx.xchangeit.model.CustomItem(i.id, i.title, i.description, i.status, i.publishDate, i.lastModifiedDate, i.thumbnail) FROM Item i WHERE i.deleted= false and i.producer.id= "
+				+ userId;
 		TypedQuery<CustomItem> typedQuery = entityManager.createQuery(query, CustomItem.class);
 		return typedQuery.getResultList();
 	}

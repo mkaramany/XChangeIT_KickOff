@@ -3,8 +3,10 @@ package com.projectx.xchangeit.model;
 public class ItemSearchCriteria {
 
 	private String textSearch;
-	private String zipCode;
-	private String city;
+	private Double minPrice;
+	private Double maxPrice;
+	private String age;
+	private String color;
 
 	public String getTextSearch() {
 		return textSearch;
@@ -14,20 +16,36 @@ public class ItemSearchCriteria {
 		this.textSearch = textSearch;
 	}
 
-	public String getZipCode() {
-		return zipCode;
+	public Double getMinPrice() {
+		return minPrice;
 	}
 
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
+	public void setMinPrice(Double minPrice) {
+		this.minPrice = minPrice;
 	}
 
-	public String getCity() {
-		return city;
+	public Double getMaxPrice() {
+		return maxPrice;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setMaxPrice(Double maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 }
