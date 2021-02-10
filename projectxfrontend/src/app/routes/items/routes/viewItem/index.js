@@ -9,6 +9,7 @@ import ContainerHeader from "../../../../../components/ContainerHeader/index";
 import ItemCategory from "../../../../../components/ItemCategory";
 import ItemAge from "../../../../../components/ItemAge";
 import ItemStatus from "../../../../../components/ItemStatus";
+import Rating from "../../../../../components/Rating";
 import PhotoCollage from "./../../../../../components/PhotoCollage/index";
 import PopUpMessage from "./../../../../../components/PopUpMessage/index";
 
@@ -134,108 +135,149 @@ class ViewItem extends React.Component {
                   heading={this.props.itemDetails.title}
                 ></PhotoCollage>
 
-                {/* <div className="jr-card">
-                  <h3><IntlMessages id="items.viewItem.map" />: </h3>
-                </div> */}
+
 
                 <div className="jr-card">
-                  <h3><IntlMessages id="items.viewItem.status" />: </h3>
-                  <ItemStatus
-                    width={100}
-                    status={this.props.itemDetails.status}
-                  ></ItemStatus>
-                  <br></br>
-                  <br></br>
+
+                  <Grid container >
+                    <Grid item xs={6}>
+                      <h3><IntlMessages id="items.viewItem.status" />: </h3>
+                      <ItemStatus
+                        width={100}
+                        status={this.props.itemDetails.status}
+                      ></ItemStatus>
+                      <br></br>
+                      <br></br>
 
 
-                  <h3><IntlMessages id="items.viewItem.fullDescription" />: </h3>
-                  {this.props.itemDetails.description}
-                  <br></br>
-                  <br></br>
+                      <h3><IntlMessages id="items.viewItem.fullDescription" />: </h3>
+                      {this.props.itemDetails.description}
+                      <br></br>
+                      <br></br>
 
-                  <h3><IntlMessages id="items.viewItem.category" />: </h3>
-                  <ItemCategory
-                    width={100}
-                    age={this.props.itemDetails.category}
-                  ></ItemCategory>
-                  <br></br>
-                  <br></br>
+                      <h3><IntlMessages id="items.viewItem.category" />: </h3>
+                      <ItemCategory
+                        width={100}
+                        age={this.props.itemDetails.category}
+                      ></ItemCategory>
+                      <br></br>
+                      <br></br>
 
-                  <h3><IntlMessages id="items.price" />: </h3>
-                  {this.props.itemDetails.price}
-                  <br></br>
-                  <br></br>
+                      <h3><IntlMessages id="items.price" />: </h3>
+                      {this.props.itemDetails.price}
+                      <br></br>
+                      <br></br>
 
-                  <h3><IntlMessages id="items.deposit" />: </h3>
-                  {this.props.itemDetails.deposit}
-                  <br></br>
-                  <br></br>
+                      <h3><IntlMessages id="items.deposit" />: </h3>
+                      {this.props.itemDetails.deposit}
+                      <br></br>
+                      <br></br>
 
-                  <h3><IntlMessages id="items.cancellationFees" />: </h3>
-                  {this.props.itemDetails.cancellationFees}
-                  <br></br>
-                  <br></br>
+                      <h3><IntlMessages id="items.cancellationFees" />: </h3>
+                      {this.props.itemDetails.cancellationFees}
+                      <br></br>
+                      <br></br>
 
-                  <h3><IntlMessages id="items.age" />: </h3>
-                  <ItemAge
-                    width={100}
-                    age={this.props.itemDetails.age}
-                  ></ItemAge>
-                  <br></br>
-                  <br></br>
+                      <h3><IntlMessages id="items.age" />: </h3>
+                      <ItemAge
+                        width={100}
+                        age={this.props.itemDetails.age}
+                      ></ItemAge>
+                      <br></br>
+                      <br></br>
 
-                  <h3><IntlMessages id="items.viewItem.color" />: </h3>
-                  {this.props.itemDetails.color}
-                  <br></br>
-                  <br></br>
+                      <h3><IntlMessages id="items.viewItem.color" />: </h3>
+                      {this.props.itemDetails.color}
+                      <br></br>
+                      <br></br>
 
-                  <h3><IntlMessages id="items.viewItem.activityType" />: </h3>
-                  {this.props.itemDetails.activityType}
-                  <br></br>
-                  <br></br>
+                      <h3><IntlMessages id="items.viewItem.activityType" />: </h3>
+                      {this.props.itemDetails.activityType}
+                      <br></br>
+                      <br></br>
 
-                  <h3><IntlMessages id="items.viewItem.location" />: </h3>
-                  {this.props.itemDetails.location && this.props.itemDetails.location.area.name}
-                  <br></br>
-                  <br></br>
+                      <h3><IntlMessages id="items.viewItem.location" />: </h3>
+                      {this.props.itemDetails.location && this.props.itemDetails.location.area.name}
+                      <br></br>
+                      <br></br>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Grid tem xs={12} style={{"paddingBottom" : "20%"}}>
+                      <h3><IntlMessages id="items.owner" />: </h3>
+                      <div
+                        style={{
+                          marginTop: "10px",
+                          display: "flex",
+                          justifyContent: "flex-start",
+                        }}
+                      >
 
-                  <h3><IntlMessages id="items.owner" />: </h3>
-                  <div
-                    style={{
-                      marginTop: "10px",
-                      display: "flex",
-                      justifyContent: "flex-start",
-                    }}
-                  >
-                    {this.showPlaceholder() && (
-                      <Avatar
-                        className="size-50"
-                        alt="..."
-                        src={require("assets/images/placeholder.jpg")}
-                      />
-                    )}
-                    {!this.showPlaceholder() && (
-                      <Avatar
-                        className="size-50"
-                        alt="..."
-                        src={this.getAvatar()}
-                      />
-                    )}
-                    <span style={{ margin: "1%" }}
-                      className="jr-link"
-                      onClick={() => this.showReviewsPopUp()}
-                    >
-                      {this.props.itemDetails.producer.firstName} {this.props.itemDetails.producer.lastName}
-                      <p className="mb-0 jr-fs-sm text-truncate"><i className={`zmdi zmdi-star text-orange`} /> {"5.0 from 14 reviews"} </p>
-                    </span>
-                    <XChangeItDialog
-                      open={this.state.showReviews}
-                      onClose={this.hideReviewsPopUp}
-                      maxWidth='md'
-                      title={<IntlMessages id="items.viewItem.userReviews" />}
-                      content={"User Reviews code goes here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"}>
-                    </XChangeItDialog>
-                  </div>
+                        <Avatar
+                            className="size-50"
+                            alt="..."
+                            src={"data:image/jpeg;base64," + this.props.itemDetails.thumbnail}
+                          />
+                       
+                        <span style={{ margin: "1%" }}
+                          className="jr-link"
+                          onClick={() => this.showReviewsPopUp()}
+                        >
+                          {this.props.itemDetails.title} 
+                         <Rating totalRatingValue={this.props.itemDetails.totalRating} ratingsCount={this.props.itemDetails.ratings.length}/>
+                        </span>
+                        <XChangeItDialog
+                          open={this.state.showReviews}
+                          onClose={this.hideReviewsPopUp}
+                          maxWidth='md'
+                          title={<IntlMessages id="items.viewItem.userReviews" />}
+                          content={"User Reviews code goes here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"}>
+                        </XChangeItDialog>
+                      </div>
+                      </Grid>
+                      <Grid tem xs={12} style={{"paddingBottom" : "2%"}}>
+                      <h3><IntlMessages id="items.owner" />: </h3>
+                      <div
+                        style={{
+                          marginTop: "10px",
+                          display: "flex",
+                          justifyContent: "flex-start",
+                        }}
+                      >
+                        {this.showPlaceholder() && (
+                          <Avatar
+                            className="size-50"
+                            alt="..."
+                            src={require("assets/images/placeholder.jpg")}
+                          />
+                        )}
+                        {!this.showPlaceholder() && (
+                          <Avatar
+                            className="size-50"
+                            alt="..."
+                            src={this.getAvatar()}
+                          />
+                        )}
+                        <span style={{ margin: "1%" }}
+                          className="jr-link"
+                          onClick={() => this.showReviewsPopUp()}
+                        >
+                          {this.props.itemDetails.producer.firstName} {this.props.itemDetails.producer.lastName}
+                          <Rating totalRatingValue={this.props.itemDetails.totalRating} ratingsCount={this.props.itemDetails.ratings.length}/>
+                        </span>
+                        <XChangeItDialog
+                          open={this.state.showReviews}
+                          onClose={this.hideReviewsPopUp}
+                          maxWidth='md'
+                          title={<IntlMessages id="items.viewItem.userReviews" />}
+                          content={"User Reviews code goes here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"}>
+                        </XChangeItDialog>
+                      </div>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+
+
 
                 </div>
                 <Grid container>
