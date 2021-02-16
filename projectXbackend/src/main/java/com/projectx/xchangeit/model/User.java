@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
@@ -74,12 +75,22 @@ public class User implements Serializable {
 	@Transient
 	private List<Item> items;
 
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private List<UserReview> reviews;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private List<UserRating> ratings;
 
 	private String profilePictureUrl;
+	
+	private Double totalRating;
 
 	public User() {
 	}
@@ -215,6 +226,29 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
+	public List<UserReview> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<UserReview> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<UserRating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<UserRating> ratings) {
+		this.ratings = ratings;
+	}
+
+	public Double getTotalRating() {
+		return totalRating;
+	}
+
+	public void setTotalRating(Double totalRating) {
+		this.totalRating = totalRating;
+	}
 
 	@Override
 	public String toString() {

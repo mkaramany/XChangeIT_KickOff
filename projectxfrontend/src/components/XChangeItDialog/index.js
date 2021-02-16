@@ -24,10 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 const XChangeItDialog = (props) => {
   const classes = useStyles();
-  const handleClick = () => {
-    console.log("in handle click");
-    document.getElementById(props.formSubmitionBtn).click();
-  };
+ 
   return (
     <div>
       <Dialog
@@ -44,7 +41,7 @@ const XChangeItDialog = (props) => {
         </AppBar>
 
         <DialogContent>
-          <DialogContentText>{props.content}</DialogContentText>
+         <DialogContentText style={{paddingLeft:"1000px"}}>{props.content}</DialogContentText>
           {props.children}
         </DialogContent>
         <DialogActions>

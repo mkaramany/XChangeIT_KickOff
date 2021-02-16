@@ -679,6 +679,7 @@
   "items.cancellationFees":"Cancellation Fees",
   "items.price.per24Hrs":"/24 hrs",
   "items.owner":"Owner",
+  "items.whatPeopleSay": "What People Say:",
   "items.location.area":"Area",
   "request.state.requestPending":"Request Pending",
   "request.state.rejected":"Rejected",
@@ -701,7 +702,9 @@
   "items.category.all":"All",
   "items.category.activityEquipment":"Activity Equipment",
   "items.category.sportsEquipment":"Sports Equipment",
-  "items.category.handymanTools":"Handyman Tools"
+  "items.category.handymanTools":"Handyman Tools",
+  "items.ratings.user":"user",
+  "items.ratings.users":"users"
   
   
 

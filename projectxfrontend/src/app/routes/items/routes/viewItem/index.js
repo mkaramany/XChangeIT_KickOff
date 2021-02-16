@@ -10,14 +10,16 @@ import ItemCategory from "../../../../../components/ItemCategory";
 import ItemAge from "../../../../../components/ItemAge";
 import ItemStatus from "../../../../../components/ItemStatus";
 import Rating from "../../../../../components/Rating";
+import Review from "../../../../../components/Review";
 import PhotoCollage from "./../../../../../components/PhotoCollage/index";
 import PopUpMessage from "./../../../../../components/PopUpMessage/index";
-
+import _ from "lodash";
 
 class ViewItem extends React.Component {
   state = {
     selectedSlotId: "",
-    showReviews: false
+    showItemReviews: false,
+    showUserReviews: false
   };
 
   componentDidMount() {
@@ -68,12 +70,20 @@ class ViewItem extends React.Component {
     return false;
   };
 
-  showReviewsPopUp = () => {
-    this.setState({ showReviews: true });
+  showItemReviewsPopUp = () => {
+    this.setState({ showItemReviews: true });
   }
 
-  hideReviewsPopUp = () => {
-    this.setState({ showReviews: false });
+  hideItemReviewsPopUp = () => {
+    this.setState({ showItemReviews: false });
+  }
+
+  showUserReviewsPopUp = () => {
+    this.setState({ showUserReviews: true });
+  }
+
+  hideUserReviewsPopUp = () => {
+    this.setState({ showUserReviews: false });
   }
 
   isReceiverSameAsProducer() {
@@ -202,76 +212,80 @@ class ViewItem extends React.Component {
                       <br></br>
                     </Grid>
                     <Grid item xs={6}>
-                      <Grid tem xs={12} style={{"paddingBottom" : "20%"}}>
-                      <h3><IntlMessages id="items.owner" />: </h3>
-                      <div
-                        style={{
-                          marginTop: "10px",
-                          display: "flex",
-                          justifyContent: "flex-start",
-                        }}
-                      >
+                      <Grid tem xs={12} style={{ "paddingBottom": "20%" }}>
+                        <h3><IntlMessages id="items.whatPeopleSay" /></h3>
+                        <div
+                          style={{
+                            marginTop: "10px",
+                            display: "flex",
+                            justifyContent: "flex-start",
+                          }}
+                        >
 
-                        <Avatar
+                          <Avatar
                             className="size-50"
                             alt="..."
                             src={"data:image/jpeg;base64," + this.props.itemDetails.thumbnail}
                           />
-                       
-                        <span style={{ margin: "1%" }}
-                          className="jr-link"
-                          onClick={() => this.showReviewsPopUp()}
-                        >
-                          {this.props.itemDetails.title} 
-                         <Rating totalRatingValue={this.props.itemDetails.totalRating} ratingsCount={this.props.itemDetails.ratings.length}/>
-                        </span>
-                        <XChangeItDialog
-                          open={this.state.showReviews}
-                          onClose={this.hideReviewsPopUp}
-                          maxWidth='md'
-                          title={<IntlMessages id="items.viewItem.userReviews" />}
-                          content={"User Reviews code goes here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"}>
-                        </XChangeItDialog>
-                      </div>
+
+                          <span style={{ margin: "1%" }}
+                            className="jr-link"
+                            onClick={() => this.showItemReviewsPopUp()}
+                          >
+                            {this.props.itemDetails.title}
+                            <Rating totalRatingValue={this.props.itemDetails.totalRating} ratingsCount={this.props.itemDetails.ratings.length} />
+                            {this.props.itemDetails.reviews.slice(0,2).map( (r) => { return (<Review review={r.review} reviewer={r.reviewBy} />); })}
+                          </span>
+                          <XChangeItDialog
+                            open={this.state.showItemReviews}
+                            onClose={this.hideItemReviewsPopUp}
+                            maxWidth='lg'
+                            title={<IntlMessages id="items.viewItem.userReviews" />}>
+                            <div>
+                              {_.map(this.props.itemDetails.reviews, (r) => { return (<Review review={r.review} reviewer={r.reviewBy} />); })}
+                            </div>
+                          </XChangeItDialog>
+                        </div>
                       </Grid>
-                      <Grid tem xs={12} style={{"paddingBottom" : "2%"}}>
-                      <h3><IntlMessages id="items.owner" />: </h3>
-                      <div
-                        style={{
-                          marginTop: "10px",
-                          display: "flex",
-                          justifyContent: "flex-start",
-                        }}
-                      >
-                        {this.showPlaceholder() && (
-                          <Avatar
-                            className="size-50"
-                            alt="..."
-                            src={require("assets/images/placeholder.jpg")}
-                          />
-                        )}
-                        {!this.showPlaceholder() && (
-                          <Avatar
-                            className="size-50"
-                            alt="..."
-                            src={this.getAvatar()}
-                          />
-                        )}
-                        <span style={{ margin: "1%" }}
-                          className="jr-link"
-                          onClick={() => this.showReviewsPopUp()}
+                      <Grid tem xs={12} style={{ "paddingBottom": "2%" }}>
+                        <h3><IntlMessages id="items.owner" />: </h3>
+                        <div
+                          style={{
+                            marginTop: "10px",
+                            display: "flex",
+                            justifyContent: "flex-start",
+                          }}
                         >
-                          {this.props.itemDetails.producer.firstName} {this.props.itemDetails.producer.lastName}
-                          <Rating totalRatingValue={this.props.itemDetails.totalRating} ratingsCount={this.props.itemDetails.ratings.length}/>
-                        </span>
-                        <XChangeItDialog
-                          open={this.state.showReviews}
-                          onClose={this.hideReviewsPopUp}
-                          maxWidth='md'
-                          title={<IntlMessages id="items.viewItem.userReviews" />}
-                          content={"User Reviews code goes here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"}>
-                        </XChangeItDialog>
-                      </div>
+                          {this.showPlaceholder() && (
+                            <Avatar
+                              className="size-50"
+                              alt="..."
+                              src={require("assets/images/placeholder.jpg")}
+                            />
+                          )}
+                          {!this.showPlaceholder() && (
+                            <Avatar
+                              className="size-50"
+                              alt="..."
+                              src={this.getAvatar()}
+                            />
+                          )}
+                          <span style={{ margin: "1%" }}
+                            className="jr-link"
+                            onClick={() => this.showUserReviewsPopUp()}
+                          >
+                            {this.props.itemDetails.producer.firstName} {this.props.itemDetails.producer.lastName}
+                            <Rating totalRatingValue={this.props.itemDetails.producer.totalRating} ratingsCount={this.props.itemDetails.producer.ratings.length} />
+                            {this.props.itemDetails.producer.reviews.slice(0,2).map( (r) => { return (<Review review={r.review} reviewer={r.reviewBy} />); })}
+                          </span>
+                          <XChangeItDialog
+                            open={this.state.showUserReviews}
+                            onClose={this.hideUserReviewsPopUp}
+                            maxWidth='lg'
+                            title={<IntlMessages id="items.viewItem.userReviews" />}>
+                              <div>{_.map(this.props.itemDetails.producer.reviews, (r) => { return (<Review review={r.review} reviewer={r.reviewBy} />); })}</div>
+                          </XChangeItDialog>
+                        </div>
                       </Grid>
                     </Grid>
                   </Grid>
