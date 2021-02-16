@@ -2,7 +2,7 @@
 
 ################################## BackEnd #######################################
 
--in the BE project please go to \src\main\resources\Scripts
+-in the BE project please go to \src\main\resources\Scripts and run DDL.sql
 
 -open the BE project in your IDE and find the "XChangeItApplication" class
 
